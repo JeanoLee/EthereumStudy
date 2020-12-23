@@ -61,7 +61,7 @@ contract VoteFactory{
     
     Vote[] public votes;
     
-    mapping(string => uint256) votesTablebyTitle;
+    mapping(string => uint256) votesTableByTitle;
     mapping(address => uint256) votesTableByAddress;
     
     constructor() public{
@@ -71,13 +71,13 @@ contract VoteFactory{
     function createVote( string memory _title, uint256 _timeLimit) public returns(bool) {
         Vote vote = new Vote(_title,_timeLimit);
         uint256 idx = votes.length;
-        votesTablebyTitle[_title] = idx;
+        votesTableByTitle[_title] = idx;
         votesTableByAddress[ address(vote)] = idx;
         votes.push(vote);
     }
     
     function findVoteByTitle( string memory _title) public view returns(address){
-        return address(votesTablebyTitle[_title]);
+        return address(votesTableByTitle[_title]);
     }
     
     function findVoteByIndex( uint256 _idx) public view returns(address){
