@@ -77,7 +77,8 @@ contract VoteFactory{
     }
     
     function findVoteByTitle( string memory _title) public view returns(address){
-        return address(votesTableByTitle[_title]);
+        uint256 idx = votesTableByTitle[_title];
+        return address(votes[idx]);
     }
     
     function findVoteByIndex( uint256 _idx) public view returns(address){
